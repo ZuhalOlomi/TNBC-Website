@@ -77,6 +77,14 @@ main {
     font-size: 1.2rem;
 }
 
+p {
+    padding: 20px;
+}
+
+canvas {
+    padding: 20px;
+}
+
 footer {
     text-align: center;
     margin: 30px;
