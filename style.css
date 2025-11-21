@@ -83,6 +83,8 @@ p {
 
 canvas {
     padding: 20px;
+    width: 100% !important;
+    height: 500px;
 }
 
 .contact-box {

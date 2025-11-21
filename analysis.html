@@ -26,7 +26,7 @@
             <h2>Analysis</h2>
         </section>
         <section>
-            <canvas id="scatterPlot" width="400" height="300"></canvas>
+            <canvas id="scatterPlot"></canvas>
         </section>
     </main>
 
@@ -54,6 +54,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     x: {
                         type: 'linear',
