@@ -6,7 +6,7 @@ body,
 h1,
 h2,
 p,
-u1 {
+ul {
     margin: 0;
     padding: 0;
 }
@@ -35,7 +35,7 @@ h1 {
     font-weight: bold;
 }
 
-nav u1 {
+nav ul {
     list-style: none;
     padding: 0;
     margin: 10px 0;
@@ -45,14 +45,14 @@ nav u1 {
     gap: 15px;
 }
 
-nav u1 li a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-nav u1 li a:hover {
+nav ul i a:hover {
     color: #a9acb1;
 }
 
