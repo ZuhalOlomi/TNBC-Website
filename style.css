@@ -85,9 +85,73 @@ canvas {
     padding: 20px;
 }
 
+.contact-box {
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid #4d82ad;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.contact-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4d82ad;
+}
+
+.contact-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.contact-box label {
+    font-weight: bold;
+    color: #333;
+    padding-left: 2px;
+    display: block;
+}
+
+.contact-box input,
+.contact-box textarea {
+    resize: vertical;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-box input:focus,
+.contact-box textarea:focus {
+    border-color: #4d82ad;
+    outline: none;
+    box-shadow: 0 0 4px rgba(77, 130, 173, 0.5);
+}
+
+.contact-box button {
+    background: #4d82ad;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3 ease;
+}
+
+.contact-box button:hover {
+    background: #3a6788;
+}
+
 footer {
     text-align: center;
     margin: 30px;
     color: #333;
-
 }
