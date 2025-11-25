@@ -9,18 +9,17 @@
     <!-- GSAP Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-
 </head>
 
 <body>
     <header>
-        <h1>UTBiome Knee Sleeve -- maybe a cooler title ? name? </h1>
+        <h1>UTBiome Knee Sleeve</h1>
         <nav>
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="analysis.html">Analysis</a></li>
-                <li><a href="video.html" class="active">Video Demo</a></li>
+                <li><a href="video.html">Video Demo</a></li>
             </ul>
         </nav>
     </header>
@@ -32,23 +31,21 @@
                 <h3>Track Progress Visually</h3>
                 <p style="margin-left: 10px; margin-right: 10px;">
                     Transforming knee rehabilitation using real-time data from our smart knee sleeve.<br>
-                    Utlilize our intuitive dashboard to monitor patient progress, enhance adherence, and optimize
-                    recovery outcomes.
+                    Utilize our intuitive dashboard to monitor patient progress, enhance adherence, and optimize recovery outcomes.
                 </p>
                 <div class="cta-buttons">
-                    <a href="video.html" class="btn-primary">Video Demo</a> 
+                    <a href="video.html" class="btn-primary">Video Demo</a>
                     <button class="btn-secondary">Login</button>
                 </div>
             </div>
             <div class="hero-visual gs_reveal gs_reveal_fromRight">
                 <div class="dashboard-preview">
                     <div class="mock-chart">
-                        <div class="chart-header">Patient Progress Overview (this is a sample from the demo we'll
-                            show... for glazing purposes)</div>
+                        <div class="chart-header">Patient Progress Overview</div>
                         <div class="chart-content">
                             <div class="metric">Range of Motion (ROM): 92°</div>
-                            <div class="metric">something: 85%</div>
-                            <div class="metric">something: 2/10</div>
+                            <div class="metric">Session Completion: 85%</div>
+                            <div class="metric">Pain Level: 2/10</div>
                         </div>
                     </div>
                 </div>
@@ -60,15 +57,13 @@
             <div class="feature-grid">
                 <div class="feature-item gs_reveal gs_reveal_fromLeft">
                     <h3>Real-time ROM Tracking</h3>
-                    <p>Monitor knee flexion and extension with precise sensor data from every rehabilitation session.
-                    </p>
+                    <p>Monitor knee flexion and extension with precise sensor data from every rehabilitation session.</p>
                 </div>
-                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                <div class="feature-item gs_reveal">
                     <h3>Adherence Analytics</h3>
-                    <p>See which patients are completing their prescribed exercises and identify those needing support.
-                    </p>
+                    <p>See which patients are completing their prescribed exercises and identify those needing support.</p>
                 </div>
-                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                <div class="feature-item gs_reveal gs_reveal_fromRight">
                     <h3>Progress Dashboards</h3>
                     <p>Visualize recovery trends with clear charts and graphs for effective patient communication.</p>
                 </div>
@@ -78,23 +73,86 @@
         <section class="features gs_reveal">
             <h2>A Brighter Future for Patients</h2>
             <div class="feature-grid">
-                <div class="feature-item gs_reveal gs_reveal_fromRight">
-                    <h3>Real-time ROM Tracking</h3>
-                    <p>Monitor knee flexion and extension with precise sensor data from every rehabilitation session.
-                    </p>
+                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                    <h3>Personalized Recovery Plans</h3>
+                    <p>Customized exercise protocols based on individual progress and capabilities.</p>
+                </div>
+                <div class="feature-item gs_reveal">
+                    <h3>Motivational Feedback</h3>
+                    <p>Stay engaged with visible milestones and achievement tracking throughout recovery.</p>
                 </div>
                 <div class="feature-item gs_reveal gs_reveal_fromRight">
-                    <h3>Adherence Analytics</h3>
-                    <p>See which patients are completing their prescribed exercises and identify those needing support.
-                    </p>
-                </div>
-                <div class="feature-item gs_reveal gs_reveal_fromRight">
-                    <h3>Progress Dashboards</h3>
-                    <p>Visualize recovery trends with clear charts and graphs for effective patient communication.</p>
+                    <h3>Remote Monitoring</h3>
+                    <p>Receive professional guidance and adjustments without frequent clinic visits.</p>
                 </div>
             </div>
         </section>
 
+        <section class="faq-section">
+            <h2 style="margin-top: 30px;">Frequently Asked Questions (FAQs)</h2>
+            
+            <div class="faq-container">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <input type="checkbox" id="faq1" class="faq-toggle">
+                    <label for="faq1" class="faq-question">
+                        <span>Question 1?</span>
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <input type="checkbox" id="faq2" class="faq-toggle">
+                    <label for="faq2" class="faq-question">
+                        <span>How accurate is the data collected by the knee sleeve?</span>
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <input type="checkbox" id="faq3" class="faq-toggle">
+                    <label for="faq3" class="faq-question">
+                        <span>What types of knee conditions can benefit from this device?</span>
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <input type="checkbox" id="faq4" class="faq-toggle">
+                    <label for="faq4" class="faq-question">
+                        <span>How do I set up the knee sleeve with the mobile app?</span>
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <input type="checkbox" id="faq5" class="faq-toggle">
+                    <label for="faq5" class="faq-question">
+                        <span>What is the battery life of the UTBiome Knee Sleeve?</span>
+                        <span class="faq-icon">+</span>
+                    </label>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -133,44 +191,4 @@
         });
     </script>
 </body>
-
-</html>
-<!-- This is the code for the home page -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UTBiome Knee Sleeve</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-    <header>
-        <h1>UTBiome Knee Sleeve</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="analysis.html">Analysis</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section>
-            <h2>Hello!</h2>
-            <p>This is a paragraph</p>
-        </section>
-        <div class="box">
-            This is a box! We could probably put a photo here.
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2025-2026 UTBiome</p>
-    </footer>
-</body>
-
 </html>
