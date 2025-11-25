@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UTBiome Knee Sleeve - Rehabilitation Tracking</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- GSAP Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>UTBiome Knee Sleeve -- maybe a cooler title ? name? </h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li><a href="video.html" class="active">Video Demo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="content__heading gs_reveal">
+                <h2>Streamline Knee Rehabilitation.</h2>
+                <h3>Track Progress Visually</h3>
+                <p style="margin-left: 10px; margin-right: 10px;">
+                    Transforming knee rehabilitation using real-time data from our smart knee sleeve.<br>
+                    Utlilize our intuitive dashboard to monitor patient progress, enhance adherence, and optimize
+                    recovery outcomes.
+                </p>
+                <div class="cta-buttons">
+                    <a href="video.html" class="btn-primary">Video Demo</a> 
+                    <button class="btn-secondary">Login</button>
+                </div>
+            </div>
+            <div class="hero-visual gs_reveal gs_reveal_fromRight">
+                <div class="dashboard-preview">
+                    <div class="mock-chart">
+                        <div class="chart-header">Patient Progress Overview (this is a sample from the demo we'll
+                            show... for glazing purposes)</div>
+                        <div class="chart-content">
+                            <div class="metric">Range of Motion (ROM): 92°</div>
+                            <div class="metric">something: 85%</div>
+                            <div class="metric">something: 2/10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features gs_reveal">
+            <h2>Key Features for Clinicians</h2>
+            <div class="feature-grid">
+                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                    <h3>Real-time ROM Tracking</h3>
+                    <p>Monitor knee flexion and extension with precise sensor data from every rehabilitation session.
+                    </p>
+                </div>
+                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                    <h3>Adherence Analytics</h3>
+                    <p>See which patients are completing their prescribed exercises and identify those needing support.
+                    </p>
+                </div>
+                <div class="feature-item gs_reveal gs_reveal_fromLeft">
+                    <h3>Progress Dashboards</h3>
+                    <p>Visualize recovery trends with clear charts and graphs for effective patient communication.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features gs_reveal">
+            <h2>A Brighter Future for Patients</h2>
+            <div class="feature-grid">
+                <div class="feature-item gs_reveal gs_reveal_fromRight">
+                    <h3>Real-time ROM Tracking</h3>
+                    <p>Monitor knee flexion and extension with precise sensor data from every rehabilitation session.
+                    </p>
+                </div>
+                <div class="feature-item gs_reveal gs_reveal_fromRight">
+                    <h3>Adherence Analytics</h3>
+                    <p>See which patients are completing their prescribed exercises and identify those needing support.
+                    </p>
+                </div>
+                <div class="feature-item gs_reveal gs_reveal_fromRight">
+                    <h3>Progress Dashboards</h3>
+                    <p>Visualize recovery trends with clear charts and graphs for effective patient communication.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025-2026 UTBiome | Clinical Rehabilitation Technology</p>
+    </footer>
+
+    <script>
+        // GSAP Scroll Animation
+        function animateFrom(elem, direction) {
+            direction = direction || 1;
+            var x = 0, y = direction * 100;
+            if (elem.classList.contains("gs_reveal_fromLeft")) { x = -100; y = 0; }
+            else if (elem.classList.contains("gs_reveal_fromRight")) { x = 100; y = 0; }
+            elem.style.transform = `translate(${x}px, ${y}px)`;
+            elem.style.opacity = "0";
+            gsap.fromTo(elem, { x, y, autoAlpha: 0 }, {
+                duration: 1.25, x: 0, y: 0, autoAlpha: 1, ease: "expo", overwrite: "auto"
+            });
+        }
+
+        function hide(elem) {
+            gsap.set(elem, { autoAlpha: 0 });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray(".gs_reveal").forEach(function (elem) {
+                hide(elem);
+                ScrollTrigger.create({
+                    trigger: elem,
+                    onEnter: function () { animateFrom(elem) },
+                    onEnterBack: function () { animateFrom(elem, -1) },
+                    onLeave: function () { hide(elem) }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

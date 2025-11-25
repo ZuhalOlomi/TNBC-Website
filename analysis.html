@@ -1,0 +1,74 @@
+<!-- This is the code for the analysis page -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UTBiome Knee Sleeve</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>UTBiome Knee Sleeve</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Analysis</h2>
+        </section>
+        <section>
+            <canvas id="scatterPlot"></canvas>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025-2026 UTBiome</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('scatterPlot').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Sample Data',
+                    data: [
+                        { x: 1, y: 3 },
+                        { x: 2, y: 7 },
+                        { x: 3, y: 4 },
+                        { x: 4, y: 8 },
+                        { x: 5, y: 5 }
+                    ],
+                    backgroundColor: '#66b3ff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        title: { display: true, text: 'X Value' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Y Value' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
