@@ -26,6 +26,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -33,6 +34,7 @@ body {
 
 header {
     width: 100%;
+    max-width: 1217px;
     background: #4d82ad;
     color: #fff;
     text-align: center;
@@ -72,7 +74,7 @@ main {
     background: #fff;
     padding: 20px;
     text-align: center;
-    margin-top: 8px;
+    margin: 8px;
     border-radius: 5px;
 }
 
@@ -132,7 +134,8 @@ p {
     justify-content: flex-start;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     padding: 0.8rem 2rem;
     border: none;
     border-radius: 5px;
@@ -169,7 +172,7 @@ p {
     background: white;
     border-radius: 10px;
     padding: 1.5rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid #e1e8ed;
 }
 
@@ -226,7 +229,7 @@ p {
     background: white;
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     border: 1px solid #e1e8ed;
 }
@@ -260,7 +263,7 @@ p {
     border-radius: 8px;
     margin-bottom: 1rem;
     background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
@@ -315,20 +318,20 @@ p {
 }
 
 /* When the checkbox is checked, show the answer */
-.faq-toggle:checked + .faq-question {
+.faq-toggle:checked+.faq-question {
     background: #e9ecef;
 }
 
-.faq-toggle:checked + .faq-question + .faq-answer {
+.faq-toggle:checked+.faq-question+.faq-answer {
     max-height: 500px;
 }
 
-.faq-toggle:checked + .faq-question + .faq-answer p {
+.faq-toggle:checked+.faq-question+.faq-answer p {
     opacity: 1;
     transform: translateY(0);
 }
 
-.faq-toggle:checked + .faq-question .faq-icon {
+.faq-toggle:checked+.faq-question .faq-icon {
     transform: rotate(45deg);
 }
 
@@ -427,7 +430,7 @@ p {
     background: white;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #e1e8ed;
 }
 
@@ -468,7 +471,7 @@ canvas {
     padding: 2rem;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #e1e8ed;
 }
 
@@ -520,11 +523,12 @@ canvas {
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
     height: 0;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .video-wrapper iframe {
@@ -565,7 +569,7 @@ canvas {
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .feature-icon {
@@ -698,60 +702,61 @@ footer {
         text-align: center;
         gap: 2rem;
     }
-    
+
     .hero-text p {
         text-align: center;
     }
-    
+
     .cta-buttons {
         justify-content: center;
         flex-direction: column;
         align-items: center;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         width: 200px;
     }
-    
+
     .feature-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .box {
         width: 90%;
         height: 250px;
     }
-    
+
     nav ul {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .hero-text h2 {
         font-size: 2rem;
     }
-    
+
     .hero-text h3 {
         font-size: 1.5rem;
     }
-    
+
     .video-intro h2 {
         font-size: 2rem;
     }
-    
+
     .video-subtitle {
         font-size: 1.1rem;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .cta-buttons {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .cta-buttons a {
         width: 200px;
     }
@@ -761,27 +766,29 @@ footer {
     main {
         padding: 10px;
     }
-    
+
     .hero {
         padding: 1rem 0;
     }
-    
+
     .feature-item {
         padding: 1.5rem;
     }
-    
+
     .dashboard-preview {
         padding: 1rem;
     }
-    
-    .about-card, .summary-card, .feature-card {
+
+    .about-card,
+    .summary-card,
+    .feature-card {
         padding: 1.5rem;
     }
-    
+
     .chart-container {
         padding: 1rem;
     }
-    
+
     canvas {
         height: 300px;
     }

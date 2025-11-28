@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
+
 <body>
     <header>
         <h1>UTBiome Knee Sleeve</h1>
@@ -14,11 +16,12 @@
             <ul>
                 <li><a href="home.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
+                <li><a href="analysis.html" class="active">Analysis</a></li>
                 <li><a href="video.html">Video Demo</a></li>
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <section class="analysis-hero">
             <h2>Patient Progress Analytics</h2>
@@ -30,12 +33,12 @@
                 <h3>Range of Motion Progress</h3>
                 <canvas id="romChart"></canvas>
             </div>
-            
+
             <div class="chart-container">
                 <h3>Session Completion Rate</h3>
                 <canvas id="completionChart"></canvas>
             </div>
-            
+
             <div class="chart-container">
                 <h3>Pain Level Trends</h3>
                 <canvas id="painChart"></canvas>
@@ -75,7 +78,7 @@
 
     <script>
         // Sample Chart.js implementation
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // ROM Chart
             const romCtx = document.getElementById('romChart').getContext('2d');
             new Chart(romCtx, {
@@ -155,4 +158,5 @@
         });
     </script>
 </body>
+
 </html>
