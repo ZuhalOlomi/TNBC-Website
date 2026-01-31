@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UTBiome Knee Sleeve - Data Analysis</title>
+
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    
+
     <style>
         .exercise-buttons {
             display: flex;
@@ -16,7 +18,7 @@
             margin: 30px 0;
             padding: 0 20px;
         }
-        
+
         .exercise-btn {
             padding: 12px 30px;
             background-color: #4d82ad;
@@ -28,256 +30,224 @@
             cursor: pointer;
             transition: all 0.3s ease;
             min-width: 120px;
-            text-align: center;
         }
-        
+
         .exercise-btn:hover {
             background-color: #3a6788;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        
+
         .exercise-btn.active {
             background-color: #2c3e50;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        
-        @media (max-width: 768px) {
-            .exercise-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .exercise-btn {
-                width: 80%;
-                max-width: 250px;
-            }
+
+        .charts-section {
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e1e8ed;
+            height: 650px;
+        }
+
+        .chart-container h3 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .data-summary {
+            padding: 3rem 2rem;
+            background: #f8f9fa;
         }
     </style>
 </head>
 
-
 <body>
-    <header>
-        <h1>UTBiome Knee Sleeve</h1>
-        <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="analysis.html" class="active">Analysis</a></li>
-                <li><a href="video.html">Video Demo</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <h1>UTBiome Knee Sleeve</h1>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="analysis.html" class="active">Analysis</a></li>
+            <li><a href="video.html">Video Demo</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main>
-        <section class="analysis-hero">
-            <h2>Patient Progress Analytics</h2>
-            <p>Comprehensive data visualization for informed clinical decisions</p>
-        </section>
+<main>
+    <section class="analysis-hero">
+        <h2>Patient Progress Analytics</h2>
+        <p>Comprehensive data visualization from clinical sessions</p>
+    </section>
 
-        <div class="exercise-buttons">
-            <button class="exercise-btn active" data-exercise="squat">Squat</button>
-            <button class="exercise-btn" data-exercise="extension">Extension</button>
-            <button class="exercise-btn" data-exercise="gait">Gait</button>
+    <div id="loading" style="text-align:center; margin:20px; color:#666;">
+        Loading patient data from files...
+    </div>
+
+    <div class="exercise-buttons" id="controls" style="display:none;">
+        <button class="exercise-btn active" data-exercise="squat">Squat</button>
+        <button class="exercise-btn" data-exercise="extension">Extension</button>
+        <button class="exercise-btn" data-exercise="gait">Gait</button>
+    </div>
+
+    <section class="charts-section" id="dashboard" style="display:none;">
+        <div class="chart-container">
+            <h3>Range of Motion Progress</h3>
+            <canvas id="romChart"></canvas>
         </div>
 
-        <section class="charts-section">
-            <div class="chart-container">
-                <h3>Range of Motion Progress</h3>
-                <canvas id="romChart"></canvas>
+        <div class="chart-container">
+            <h3>Session Completion Rate</h3>
+            <canvas id="completionChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Muscle Activation (RMS)</h3>
+            <canvas id="painChart"></canvas>
+        </div>
+    </section>
+
+    <section class="data-summary" id="summary" style="display:none;">
+        <h2>Patient Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h3>Current ROM</h3>
+                <p class="metric-value" id="val-rom">--</p>
+                <p class="metric-change" id="val-change">--</p>
             </div>
-
-            <div class="chart-container">
-                <h3>Session Completion Rate</h3>
-                <canvas id="completionChart"></canvas>
+            <div class="summary-card">
+                <h3>Adherence Rate</h3>
+                <p class="metric-value">85%</p>
+                <p class="metric-change">Excellent compliance</p>
             </div>
-
-            <div class="chart-container">
-                <h3>Pain Level Trends</h3>
-                <canvas id="painChart"></canvas>
+            <div class="summary-card">
+                <h3>Average Pain</h3>
+                <p class="metric-value" id="val-pain">--</p>
+                <p class="metric-change">Visual Analog Scale</p>
             </div>
-        </section>
-
-        <section class="data-summary">
-            <h2>Patient Summary</h2>
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <h3>Current ROM</h3>
-                    <p class="metric-value">92°</p>
-                    <p class="metric-change">+15° from baseline</p>
-                </div>
-                <div class="summary-card">
-                    <h3>Adherence Rate</h3>
-                    <p class="metric-value">85%</p>
-                    <p class="metric-change">Excellent compliance</p>
-                </div>
-                <div class="summary-card">
-                    <h3>Average Pain</h3>
-                    <p class="metric-value">2/10</p>
-                    <p class="metric-change">-4 points improvement</p>
-                </div>
-                <div class="summary-card">
-                    <h3>Treatment Duration</h3>
-                    <p class="metric-value">6 weeks</p>
-                    <p class="metric-change">4 weeks remaining</p>
-                </div>
+            <div class="summary-card">
+                <h3>Treatment Duration</h3>
+                <p class="metric-value">6 weeks</p>
+                <p class="metric-change">4 weeks remaining</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    <footer>
-        <p>© 2025-2026 UTBiome | Clinical Rehabilitation Technology</p>
-    </footer>
+<footer>
+    <p>© 2025–2026 UTBiome | Clinical Rehabilitation Technology</p>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let romChart, completionChart, painChart;
-            
-            const exerciseData = {
-                squat: {
-                    rom: [65, 72, 78, 85, 88, 92],
-                    completion: [70, 75, 80, 82, 85, 85],
-                    pain: [6, 5, 4, 3, 3, 2],
-                    currentRom: 92,
-                    romChange: '+15°',
-                    adherence: '85%',
-                    painLevel: '2/10',
-                    painChange: '-4 points'
-                },
-                extension: {
-                    rom: [10, 8, 6, 5, 4, 3],
-                    completion: [65, 70, 75, 78, 80, 82],
-                    pain: [5, 4, 4, 3, 2, 2],
-                    currentRom: 3,
-                    romChange: '-7°',
-                    adherence: '82%',
-                    painLevel: '2/10',
-                    painChange: '-3 points'
-                },
-                gait: {
-                    rom: [45, 50, 55, 60, 62, 65],
-                    completion: [80, 82, 85, 87, 88, 90],
-                    pain: [7, 6, 5, 4, 3, 2],
-                    currentRom: 65,
-                    romChange: '+20°',
-                    adherence: '90%',
-                    painLevel: '2/10',
-                    painChange: '-5 points'
-                }
-            };
+<script>
+// Chart instances and data stored at global scope so everything can reach them
+let patientData = null;
+let romChartInstance = null;
+let completionChartInstance = null;
+let rmsChartInstance = null;
 
-            function initializeCharts(exercise = 'squat') {
-                const data = exerciseData[exercise];
-                
-                const romCtx = document.getElementById('romChart').getContext('2d');
-                if (romChart) romChart.destroy();
-                romChart = new Chart(romCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                        datasets: [{
-                            label: 'Knee Flexion (°)',
-                            data: data.rom,
-                            borderColor: '#4d82ad',
-                            backgroundColor: 'rgba(77, 130, 173, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            }
-                        }
-                    }
-                });
+function initCharts(type) {
+    const data = patientData[type];
+    const labels = data.rom.map((_, i) => `Trial ${i + 1}`);
 
-                const completionCtx = document.getElementById('completionChart').getContext('2d');
-                if (completionChart) completionChart.destroy();
-                completionChart = new Chart(completionCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                        datasets: [{
-                            label: 'Completion Rate (%)',
-                            data: data.completion,
-                            backgroundColor: '#4d82ad',
-                            borderColor: '#3a6788',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 100
-                            }
-                        }
-                    }
-                });
+    // Destroy old charts before re-creating, otherwise Chart.js throws an error
+    if (romChartInstance)        romChartInstance.destroy();
+    if (completionChartInstance) completionChartInstance.destroy();
+    if (rmsChartInstance)        rmsChartInstance.destroy();
 
-                const painCtx = document.getElementById('painChart').getContext('2d');
-                if (painChart) painChart.destroy();
-                painChart = new Chart(painCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
-                        datasets: [{
-                            label: 'Pain Level (0-10)',
-                            data: data.pain,
-                            borderColor: '#e74c3c',
-                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                reverse: true,
-                                beginAtZero: true,
-                                max: 10
-                            }
-                        }
-                    }
-                });
+    romChartInstance = new Chart(document.getElementById('romChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Peak Knee Flexion (Degrees)',
+                data: data.rom,
+                borderColor: '#2ecc71',
+                backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                fill: true
+            }]
+        }
+    });
 
-                updateSummaryMetrics(data);
+    // This chart was in the HTML but never actually drawn in the original
+    completionChartInstance = new Chart(document.getElementById('completionChart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Completion Rate (%)',
+                data: data.completion,
+                backgroundColor: 'rgba(77, 130, 173, 0.6)',
+                borderColor: '#4d82ad',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { min: 0, max: 100 }
             }
+        }
+    });
 
-            function updateSummaryMetrics(data) {
-                document.querySelector('.metric-value').textContent = data.currentRom + '°';
-                document.querySelector('.metric-change').textContent = data.romChange + ' from baseline';
-                
-                const cards = document.querySelectorAll('.summary-card');
-                cards[1].querySelector('.metric-value').textContent = data.adherence;
-                cards[2].querySelector('.metric-value').textContent = data.painLevel;
-                cards[2].querySelector('.metric-change').textContent = data.painChange + ' improvement';
-            }
+    rmsChartInstance = new Chart(document.getElementById('painChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Muscle Activation Intensity (RMS mV)',
+                data: data.rms,
+                borderColor: '#e67e22',
+                borderDash: [5, 5]
+            }]
+        }
+    });
 
-            // Add button event listeners
-            const exerciseButtons = document.querySelectorAll('.exercise-btn');
-            exerciseButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    exerciseButtons.forEach(btn => btn.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    
-                    const exercise = this.getAttribute('data-exercise');
-                    
-                    initializeCharts(exercise);
-                });
-            });
+    // Update summary cards
+    document.getElementById('val-rom').textContent    = data.currentRom + '°';
+    document.getElementById('val-change').textContent = 'Change: ' + data.romChange;
+}
 
-            initializeCharts('squat');
+document.addEventListener('DOMContentLoaded', async function () {
+    const loading = document.getElementById('loading');
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/patient-history');
+        patientData = await response.json();
+
+        loading.style.display = 'none';
+        document.getElementById('controls').style.display  = 'flex';
+        document.getElementById('dashboard').style.display = 'grid';
+        document.getElementById('summary').style.display   = 'block';
+        initCharts('squat');
+    } catch (err) {
+        loading.innerHTML = "<h2 style='color:red'>Server Error: app.py is not running or CORS is missing.</h2>";
+    }
+
+    // Button handlers — initCharts is reachable now that it's global
+    const buttons = document.querySelectorAll('.exercise-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            initCharts(this.getAttribute('data-exercise'));
         });
-    </script>
+    });
+});
+</script>
 </body>
-
 </html>
