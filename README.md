@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="UTBIOME-Logo-1.jpg" alt="UTBiome Logo" width="150"/>
+  <img src="website/UTBIOME-Logo-1.jpg" alt="UTBiome Logo" width="150"/>
 </p>
 
 # UTBiome Knee Sleeve – Rehabilitation Tracking Platform
