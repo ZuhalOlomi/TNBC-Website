@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const loading = document.getElementById('loading');
 
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/patient-history');
+        const response = await fetch('http://127.0.0.1:5001/api/patient-history');
         patientData = await response.json();
 
         loading.style.display = 'none';
