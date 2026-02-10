@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EMG Live Stream</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background: #1a1a1a; color: #00ff00; font-family: 'Courier New', monospace; text-align: center; }
+        .box { width: 90%; max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #333; }
+        #status { font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>EMG SIGNAL MONITOR</h2>
+        <div id="status">Connecting...</div>
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        const status = document.getElementById('status');
+        
+        // Initialize the Graph
+        const emgChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Muscle Activity',
+                    borderColor: '#00ff00',
+                    borderWidth: 1.5,
+                    pointRadius: 0,
+                    data: [],
+                    fill: false,
+                }]
+            },
+            options: {
+                animation: false,
+                scales: {
+                    x: { display: false },
+                    y: { min: 0, max: 4095, grid: { color: '#333' } }
+                }
+            }
+        });
+
+        // Use the default ESP32 Access Point IP
+        const socket = new WebSocket('ws://192.168.4.1/ws');
+
+        socket.onopen = () => status.innerText = "ONLINE - Receiving Data";
+        socket.onclose = () => status.innerText = "OFFLINE - Check ESP32";
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            
+            // Add new data
+            emgChart.data.labels.push(data.t);
+            emgChart.data.datasets[0].data.push(data.v);
+
+            // Keep the graph moving (show last 100 points)
+            if (emgChart.data.labels.length > 100) {
+                emgChart.data.labels.shift();
+                emgChart.data.datasets[0].data.shift();
+            }
+            emgChart.update();
+        };
+    </script>
+</body>
+</html>
